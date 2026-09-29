@@ -1,4 +1,4 @@
-# ENDAI — Evolving Neural Dynamics in Agent Interaction
+# EndAI — Evolving Neural Dynamics in Agent Interaction
 
 ENDAI is a neuroevolution project exploring the evolution of neural dynamics in interacting agents.
 

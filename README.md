@@ -1,6 +1,6 @@
 # EndAI — Evolving Neural Dynamics in Agent Interaction
 
-ENDAI is a neuroevolution project exploring the evolution of neural dynamics in interacting agents.
+EndAI is a neuroevolution project exploring the evolution of neural dynamics in interacting agents.
 
 The project evolves recurrent neural network controllers through evolutionary processes rather than backpropagation. Neuroevolutionary algorithms are often criticized for their inefficiency due to the vast search spaces to which brute-force exploration is applied. Therefore, the goal of this project is to experiment with **parameter-efficient evolution** of populations of interacting agents.
 
@@ -28,7 +28,7 @@ EndAI-evolving-neural-dynamics-in-agent-interaction/
 
 ## Status
 
-ENDAI is an active research and development project.
+EndAI is an active research and development project.
 
 The code and evolutionary experiments are being developed incrementally.
 

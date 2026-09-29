@@ -82,7 +82,12 @@ def construct_init_solution(init_type="zeros"):
 
 
 
-def create_new_agent (solution, size_universe):
+def create_new_agent(
+    solution,
+    size_universe,
+    list_elim_hidden,
+    list_elim_hidden_out
+):
 
     pos_x = int(np.random.rand()*size_universe)
     pos_y = int(np.random.rand()*size_universe)
@@ -156,7 +161,12 @@ def run_episode(solution,popul,TOTAL_TIME, list_elim_hidden = [], list_elim_hidd
 
     for a in range(0,numb_of_agents):
         solution_current = popul[a,:]
-        new_agent = create_new_agent (solution_current, size_universe)
+        new_agent = create_new_agent(
+            solution_current,
+            size_universe,
+            list_elim_hidden,
+            list_elim_hidden_out
+        )
         new_agent.pred_potential = 1
         new_agent.body_color = [0.5,0,0]
         list_of_agents.append(new_agent)
@@ -168,11 +178,6 @@ def run_episode(solution,popul,TOTAL_TIME, list_elim_hidden = [], list_elim_hidd
 
     #######################################
 
-    if display_movie == True:
-
-        result = cv2.VideoWriter('filename.avi',
-                                 cv2.VideoWriter_fourcc(*'MJPG'),
-                                 10, (600,600))
 
     ###########################################
 
@@ -189,10 +194,10 @@ def run_episode(solution,popul,TOTAL_TIME, list_elim_hidden = [], list_elim_hidd
 
         ag = list_of_agents[0]
 
-        output_rec = np.zeros((np.shape(ag.model.out_layer.detach().cpu().numpy())[0] , TIME_TOT ))
-        hidden_rec = np.zeros((np.shape(ag.model.hidden_layer.detach().cpu().numpy())[0] , TIME_TOT ))
+        output_rec = np.zeros((np.shape(ag.model.out_layer.detach().cpu().numpy())[0] , TOTAL_TIME ))
+        hidden_rec = np.zeros((np.shape(ag.model.hidden_layer.detach().cpu().numpy())[0] , TOTAL_TIME ))
 
-        pos_rec = np.zeros((2, TIME_TOT))
+        pos_rec = np.zeros((2, TOTAL_TIME))
 
         data_rec_dic = { "output_rec" : output_rec,
                          "hidden_rec" : hidden_rec,
@@ -280,17 +285,6 @@ def run_episode(solution,popul,TOTAL_TIME, list_elim_hidden = [], list_elim_hidd
             frames.append(frame)
 
             """
-            time.sleep(0.0001)
-            frame = game_cont.render_video(uni,list_of_agents)
-            result.write(frame)
-            #cv2.imshow('Frame', frame)
-
-            clear_output(wait=True) #try this
-            cv2_imshow(frame)
-            plt.clf()
-
-            if cv2.waitKey(1) & 0xFF == ord('s'):
-                break
             """
 
     param_cost = False
@@ -299,7 +293,6 @@ def run_episode(solution,popul,TOTAL_TIME, list_elim_hidden = [], list_elim_hidd
         fitness_vect = fitness_vect-param_cost_vect/300
 
 
-    #cv2.destroyAllWindows()
 
 
 
